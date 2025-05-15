@@ -1,15 +1,13 @@
 {
   "version": 2,
-  "projects": [
+  "builds": [
     {
-      "src": "frontend",
+      "src": "frontend/package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "build" },
-      "buildCommand": "npm run build",
-      "outputDirectory": "build"
+      "config": { "distDir": "build" }
     },
     {
-      "src": "backend/api",
+      "src": "backend/api/*.js",
       "use": "@vercel/node"
     }
   ],
