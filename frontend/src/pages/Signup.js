@@ -16,10 +16,9 @@ const Signup = () => {
     setError('');
     setVerificationMessage('');
     try {
-      const apiBaseUrl = window.location.protocol + '//' + window.location.hostname + ':5000';
-      const res = await axios.post(`${apiBaseUrl}/auth/signup`, { name, email, password });
+      const res = await axios.post(`/api/auth/signup`, { name, email, password });
       // Auto-login after successful signup
-      const loginRes = await axios.post(`${apiBaseUrl}/auth/login`, { email, password });
+      const loginRes = await axios.post(`/api/auth/login`, { email, password });
       localStorage.setItem('token', loginRes.data.token);
       // Redirect after login
       if (loginRes.data.user.isAdmin) {
