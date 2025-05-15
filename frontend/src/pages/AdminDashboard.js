@@ -10,8 +10,8 @@ const AdminDashboard = () => {
       const fetchRecharges = async () => {
         try {
           const token = localStorage.getItem('token');
-      const apiBaseUrl = window.location.protocol + '//' + window.location.hostname + ':5000';
-      const res = await axios.get(`${apiBaseUrl}/recharge/all`, {
+      const apiBaseUrl = window.location.hostname === 'localhost' ? window.location.protocol + '//' + window.location.hostname + ':5000' : '';
+      const res = await axios.get(`${apiBaseUrl}/api/recharge/all`, {
         headers: { Authorization: `Bearer ${token}` },
       });
           console.log('Fetched recharges:', res.data);
@@ -29,8 +29,8 @@ const AdminDashboard = () => {
     setLoadingIds((prev) => new Set(prev).add(r._id));
     try {
       const token = localStorage.getItem('token');
-      const apiBaseUrl = window.location.protocol + '//' + window.location.hostname + ':5000';
-      const response = await fetch(`${apiBaseUrl}/recharge/verify-payment/${r._id}`, {
+      const apiBaseUrl = window.location.hostname === 'localhost' ? window.location.protocol + '//' + window.location.hostname + ':5000' : '';
+      const response = await fetch(`${apiBaseUrl}/api/recharge/verify-payment/${r._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
