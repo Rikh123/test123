@@ -10,13 +10,16 @@ const AdminDashboard = () => {
       const fetchRecharges = async () => {
         try {
           const token = localStorage.getItem('token');
-      const apiBaseUrl = window.location.hostname === 'localhost' ? window.location.protocol + '//' + window.location.hostname + ':5000' : '';
-      const res = await axios.get(`${apiBaseUrl}/api/recharge/all`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+          console.log('AdminDashboard token:', token);
+          const apiBaseUrl = window.location.hostname === 'localhost' ? window.location.protocol + '//' + window.location.hostname + ':5000' : '';
+          console.log('AdminDashboard apiBaseUrl:', apiBaseUrl);
+          const res = await axios.get(`${apiBaseUrl}/api/recharge/all`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
           console.log('Fetched recharges:', res.data);
           setRecharges(res.data);
         } catch (err) {
+          console.error('Error fetching recharge requests:', err);
           setError(err.response?.data?.message || 'Failed to fetch recharge requests');
         }
       };
