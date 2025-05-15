@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post(`/api/auth/login`, { email, password });
+      const res = await axios.post(`/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       const decoded = jwt_decode(res.data.token);
       if (decoded.isAdmin) {
