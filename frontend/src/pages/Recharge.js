@@ -223,9 +223,9 @@ const Recharge = () => {
       return;
     }
     try {
-      const apiBaseUrl = window.location.protocol + '//' + window.location.hostname + ':5000';
+      const apiBaseUrl = window.location.hostname === 'localhost' ? window.location.protocol + '//' + window.location.hostname + ':5000' : '';
       const res = await axios.get(
-        `${apiBaseUrl}/recharge/check-ign?mlbbId=${encodeURIComponent(mlbbId)}&serverId=${encodeURIComponent(serverId)}`,
+        `${apiBaseUrl}/api/recharge/check-ign?mlbbId=${encodeURIComponent(mlbbId)}&serverId=${encodeURIComponent(serverId)}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setIgnName(res.data);
@@ -251,9 +251,9 @@ const createRecharge = async () => {
     }
     setLoading(true);
     try {
-      const apiBaseUrl = window.location.protocol + '//' + window.location.hostname + ':5000';
+      const apiBaseUrl = window.location.hostname === 'localhost' ? window.location.protocol + '//' + window.location.hostname + ':5000' : '';
       const res = await axios.post(
-        `${apiBaseUrl}/recharge/create`,
+        `${apiBaseUrl}/api/recharge/create`,
         { mlbbId, serverId, pack },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -283,9 +283,9 @@ const createRecharge = async () => {
       formData.append('rechargeId', rechargeId);
       formData.append('paymentScreenshot', paymentScreenshot);
 
-      const apiBaseUrl = window.location.protocol + '//' + window.location.hostname + ':5000';
+      const apiBaseUrl = window.location.hostname === 'localhost' ? window.location.protocol + '//' + window.location.hostname + ':5000' : '';
       await axios.post(
-        `${apiBaseUrl}/recharge/upload-payment`,
+        `${apiBaseUrl}/api/recharge/upload-payment`,
         formData,
         {
           headers: {
@@ -310,9 +310,9 @@ const createRecharge = async () => {
     }
     const interval = setInterval(async () => {
       try {
-        const apiBaseUrl = window.location.protocol + '//' + window.location.hostname + ':5000';
+        const apiBaseUrl = window.location.hostname === 'localhost' ? window.location.protocol + '//' + window.location.hostname + ':5000' : '';
         const res = await axios.get(
-          `${apiBaseUrl}/recharge/status/${rechargeId}`,
+          `${apiBaseUrl}/api/recharge/status/${rechargeId}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         // Consider 'Processed' as success status
