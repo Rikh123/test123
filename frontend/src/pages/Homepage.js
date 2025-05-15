@@ -1,59 +1,58 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Placeholder images URLs or import your own images here
-const legendImageUrl = 'https://via.placeholder.com/300x100?text=Mobile+Legend+Picture';
-// Updated MLBB logo URL as per user request
+// Replace with your actual images if available
+const legendImageUrl = 'https://via.placeholder.com/500x250?text=Mobile+Legend+Banner';
 const mlbbLogoUrl = 'https://th.bing.com/th/id/OIP.g5qdQ2N-rLCO1ZzwBDca4gHaEQ?rs=1&pid=ImgDetMain';
 
 const Homepage = () => {
   const navigate = useNavigate();
 
-  const handleLogoClick = () => {
-    navigate('/login');
-  };
-
-  const handleContactClick = () => {
-    window.open('https://wa.me/9362807677', '_blank');
-  };
+  const handleLogoClick = () => navigate('/login');
+  const handleContactClick = () => window.open('https://wa.me/9362807677', '_blank');
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-800 text-white flex flex-col items-center p-6">
-      {/* Mobile Legend Picture */}
-      <div className="mb-6 w-full max-w-xs">
-        <img
-          src={legendImageUrl}
-          alt="Mobile Legend"
-          className="w-full rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
-        />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#1f005c] via-[#5b0060] to-[#870160] px-6 py-12">
+      <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-3xl w-full text-white space-y-8">
+
+        {/* Banner Image */}
+        <div className="overflow-hidden rounded-2xl shadow-lg">
+          <img
+            src={legendImageUrl}
+            alt="Mobile Legends"
+            className="w-full object-cover hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+
+        {/* Title */}
+        <div className="text-center space-y-2">
+          <h1 className="text-5xl font-bold tracking-wide drop-shadow-md">Rico Recharge Store</h1>
+          <p className="text-xl text-gray-200">Fast. Secure. Trusted Mobile Legends Diamond Top-Up.</p>
+        </div>
+
+        {/* Logo & Call to Action */}
+        <div className="flex flex-col items-center space-y-6">
+          <div
+            onClick={handleLogoClick}
+            className="cursor-pointer bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-4 rounded-full shadow-xl hover:scale-110 transition-transform duration-500"
+          >
+            <img src={mlbbLogoUrl} alt="MLBB Logo" className="w-24 h-24 object-contain rounded-full" />
+          </div>
+          <p className="text-lg text-center max-w-sm">
+            Tap the logo to start your recharge journey. Diamonds delivered with care and speed!
+          </p>
+        </div>
+
+        {/* Contact Button */}
+        <div className="text-center">
+          <button
+            onClick={handleContactClick}
+            className="bg-green-500 hover:bg-green-600 active:bg-green-700 text-white text-lg font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-2xl transition duration-300"
+          >
+            💬 Contact Customer Support
+          </button>
+        </div>
       </div>
-
-      {/* Website Name */}
-      <header className="mb-8 text-center">
-        <h2 className="text-4xl font-extrabold mb-2 drop-shadow-2xl tracking-wide">Rico Website</h2>
-        <h1 className="text-5xl font-extrabold mb-4 drop-shadow-2xl tracking-wide">Mobile Legends Recharge</h1>
-      </header>
-
-      {/* MLBB Recharge Logo */}
-      <div
-        className="mb-8 cursor-pointer w-24 sm:w-32 rounded-3xl shadow-2xl hover:shadow-4xl transform hover:scale-110 transition-transform duration-500 bg-gradient-to-r from-purple-700 via-pink-600 to-red-500 p-4"
-        onClick={handleLogoClick}
-      >
-        <img src={mlbbLogoUrl} alt="MLBB Recharge Logo" className="w-full rounded-3xl" />
-      </div>
-
-      {/* Description */}
-      <p className="text-lg max-w-md text-center mb-12 drop-shadow-lg">
-        Recharge your Mobile Legends diamonds quickly and securely.
-      </p>
-
-      {/* Customer Contact */}
-      <button
-        onClick={handleContactClick}
-        className="bg-green-500 hover:bg-green-600 active:bg-green-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-2xl transition duration-300"
-      >
-        Contact Customer Support
-      </button>
     </div>
   );
 };
